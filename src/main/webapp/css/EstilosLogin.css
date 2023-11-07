@@ -1,0 +1,17 @@
+.EL_textosGrande{
+	color:white;
+	font-size: 19px;
+	font-weight: bold;
+	vertical-align: middle;
+	text-align: center;
+	font-family: arial;
+}
+
+.EL_msjRespuesta{
+		
+	font-family: arial;
+	font-size: 12px;
+	font-weight: bold;
+	color:  #DC143C;
+	
+}

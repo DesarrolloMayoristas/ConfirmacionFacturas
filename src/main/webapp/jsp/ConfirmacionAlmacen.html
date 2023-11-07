@@ -1,0 +1,48 @@
+<div style=""> 
+<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"  style="">   
+	<div style="height: 65%">  
+		<div class="card" style=" margin-top: 10px;">
+			<div class="card-body">
+				<table>
+					<tr>
+						<td> <label style="    font-family: none;font-size: 21px;margin-bottom: 0px;">Escanee factura:</label> </td> 
+						<td align="center">   
+						<div style="    height: 100%;" align="center"> 
+						<div class="input-group mb-3"  align="center" style="    margin-bottom: 0px !important; "> 
+						  <input type="text" id="txtFactura" placeholder="Factura..." style="    padding-top: 4px;padding-bottom: 4px;padding-left: 5px;margin-left: 10px;" 
+						  onKeyPress="if (event.keyCode == 13) escanearFactura($('#txtFactura').val()) "  maxlength="15" > 
+						  <div class="input-group-append"> 
+						    <button type="button" id="btnEnviar" onclick="escanearFactura($('#txtFactura').val())"  class="btn btn-success" > <i class='fa-solid fa-check'></i></button>              
+						  </div>
+						</div>
+						 </div> 
+						</td> 
+						<td> 
+							<button type="button" id="btnEnviar" onclick="enviarFactura()" class="btn btn-info" style="margin-left: 50px;">Enviar Facturas a Credito</button>     
+						 </td>  
+					</tr>
+				</table>	 
+			</div>
+		</div>
+		<div style="margin-top: 30px; height: 100%">  
+			<table style="width: 100%"> 
+			<tr>
+			<td>
+				<label style="margin-bottom: 0px;background: black;color: white;font-weight: bold;padding-left: 10px;padding-right: 10px;padding-top: 7px;padding-bottom: 7px;"> FACTURAS ESCANEADAS </label> 
+			</td>
+			<td align="center">  
+				<div style="width: 100%" align="center">
+				<div id='customBody' align="center" style="width: max-content;"></div> 
+				</div>   
+			</td>
+			<td>
+				<div id='divFilter' align='right'></div>    
+			</td>
+			
+			</tr>
+			</table>
+			<div class="table table-responsive" id="divTableFacturas" style="width: 100%; height: 100%"></div>    	
+		</div>
+	</div>	
+</div>
+</div>  

@@ -1,0 +1,977 @@
+<input type="hidden" id="odes">
+
+
+<div class="modal fade bd-example-modal-lg" id="mdlPrevio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg"" role="document">  
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%" align="center"> 
+        <h5 class="modal-title" id="lblPrevio">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> 
+      <div class="modal-body">
+      	<table align="right" style="width: 100%">
+	      	<tr>
+	      	<td>
+	      		<label style="margin-bottom: 0px;font-weight: bold;padding-left: 10px;padding-right: 10px;padding-top: 7px;padding-bottom: 7px;" id="titlePrevio"> FACTURAS ESCANEADAS </label>   
+	      	</td>
+	      	<td>  
+	      		<div id='divFilterPrevio' align='right'></div>  
+	      	</td>
+	      	</tr>
+      	</table>   
+        <div style="width: 100%" id="divPrevio">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>  
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="mdlEnviar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%" align="center"> 
+        <h5 class="modal-title" id="lblEnvio">ENVIO DE FACTURAS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> 
+      <div class="modal-body">
+      	<table align="right" style="width: 100%">
+	      	<tr>
+	      	<td>
+	      		<label style="margin-bottom: 0px;padding-left: 10px;padding-right: 10px;padding-top: 7px;padding-bottom: 0px;    font-weight: 500;   " id="titleEnvio"> FACTURAS ESCANEADAS </label>  
+<!-- 	      		<label style="margin-bottom: 0px;padding-left: 10px;padding-right: 10px;padding-top: 0px;padding-bottom: 7px;" id="lblFacturas"> FACTURAS ESCANEADAS </label>   -->
+	      		     
+	      	</td>
+	      	</tr>
+      	</table>   
+      </div>
+      <div class="" align="center" style="display: none;    margin-bottom: 20px; width: 100%" id="esperaValidaProcSurtFac" > 
+					<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+      <div class="modal-footer" align="right">
+      			 	<button type="button" class="btn btn-secondary" onclick="$('#mdlEnviar').modal('hide')">Cerrar</button>  
+			        <button type="button" id="enviarCredito" onclick="sendFacturasEncargado()" class="btn btn-success" style="display:none">Enviar Facturas <i class="fa-solid fa-arrow-up-from-bracket"></i></button>
+			        <button type="button" id="enviarEncargado" onclick="sendFacturasCobranza()" class="btn btn-success" style="display:none">Enviar Facturas <i class="fa-solid fa-arrow-up-from-bracket"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="mdlUsrCredito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%; padding-bottom: 10px;" align="center"> 
+        <h5 class="modal-title" id="lblCredito" style="FONT-SIZE: 16px;">SELECCIONE COMO DESEA CONSULTAR LAS FACTURAS</h5>      
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> 
+      <div class="modal-body" style="    padding-top: 4px;">   
+      <div align="center" style="width: 100%;margin-top: 7px;margin-bottom: 4px;display:none" id="warningUsr">      
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+			  <label id="lblWarningUsr" style="    margin-bottom: 0px;"></label>   
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+		</div>
+      	<table  style="width: 100%;margin-top: 10px;" id="tblUsr">  
+	      	<tr>
+	      	<td align="center">
+	      		<button type="button" id="enviarAlmacen" onclick="$('#mdlUsrCredito').modal('hide');$('#mdlCreditoCorteECC').modal('toggle');$('#txtCreditoCorteECC').val('');consultarCortesPendientesECC();$('#mdlCreditoCorteECC').on('shown.bs.modal', function () { $('#txtCreditoCorteECC').focus(); });" class="btn btn-success" style=""ECC >${infoUsu.cve_usuario} <i class="fa-solid fa-user"></i></button>                  
+	      	</td>
+	      	<td align="center"> 
+	      		<button type="button" id="enviarAlmacen1" onclick="diferenteEncargado()" class="btn btn-warning" style="">Elegir otro ECC <i class="fa-solid fa-users"></i></button> 
+	      	</td>
+	      	</tr>
+      	</table>   
+      	<div style="width: 100%; display: none" id="tblUsrValidacion">
+			<div class="input-group" align="center" style="width: 95%;margin-bottom: 0px;margin-top: 10px;">          
+			  <div class="input-group-prepend">
+				   <span class="input-group-text">Ingrese contraseña</span>  
+			 	</div>
+			 <input type="text"  id="passCredito" class="form-control" placeholder="Contraseña..."  aria-label="Recipient's username" aria-describedby="basic-addon2">     
+			<div class="input-group-append">   
+		   <button type="button" id="enviarAlmacen2" onclick="validarPass()" class="btn btn-warning" style="padding-top: 2px;color: #564646;padding-bottom: 2px;">Continuar <i class="fa-solid fa-key"></i></button>   
+		 </div>
+		</div>
+		</div>   
+      	
+      	    
+      	<div style="width: 100%; display: none" id="tblEncargado" align="center">    
+	      	<div class="input-group" align="center" style="width: 95%;margin-bottom: 0px;margin-top: 10px;">        
+    		  <div class="input-group-prepend">
+			    <span class="input-group-text"><i class="fa-solid fa-user"></i></span>  
+			  </div>
+			   <select class="custom-select" id="slcEncargado">
+			  </select>
+			 <div class="input-group-append">
+			    <button class="btn btn-outline-success" type="button" onclick="continuarEncargado()">Continuar <i class='fa-solid fa-check'></i></button>
+			  </div>
+		    
+		  </div>
+      	</div>
+      	<div class="" align="center" style="display: none; width: 100%" id="esperaValidaProcSurt" >
+					<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+      </div>
+      <div class="modal-footer" style="display: none;padding-bottom: 6px;padding-top: 4px;" id="footerUsr"> 
+      		<button type="button" class="btn btn-outline-secondary" onclick="regresarEncargado()" style="font-size: 14px"><i class="fa-solid fa-arrow-left-long"> </i> Regresar </button>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+ 
+<div class="modal fade" id="mdlAlmacenFolio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%; padding-bottom: 10px;" align="center"> 
+        <h5 class="modal-title" id="" style="FONT-SIZE: 16px;">CONFIRMACION POR FOLIO o TRANSPORTE</h5>     
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+          <span aria-hidden="true">&times;</span>
+        </button> 
+      </div> 
+      <div class="modal-body" style="    padding-top: 4px;">   
+      <div align="center" style="width: 100%;margin-top: 7px;margin-bottom: 4px;display:none" id="warningUsrAlm">      
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+			  <label id="warningUsrAlmLb" style="    margin-bottom: 0px;"></label>   
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+		</div>
+      	<div style="width: 100%; display:  " id="">
+			<div class="input-group" align="center" style="width: 95%;margin-bottom: 0px;margin-top: 10px;">           
+			  <div class="input-group-prepend">
+				   <span class="input-group-text">FOLIO RUTA: </span>  
+			 	</div>
+			 <input type="text"  id="txtFolio" class="form-control" placeholder="Ingrese folio de hoja de ruta.."  aria-label="Recipient's username" aria-describedby="basic-addon2" onKeyPress="if (event.keyCode == 13) validarFolio($('#txtFolio').val());return soloNumeros(event); " >            
+<!-- 			<div class="input-group-append">    -->
+<!-- 		   <button type="button" id="" onclick="validarFolio($('#txtFolio').val())" class="btn btn-warning" style="padding-top: 2px;color: #564646;padding-bottom: 2px;">Continuar <i class="fa-solid fa-key"></i></button>    -->  
+<!-- 		 </div> -->
+		</div> 
+		</div>   
+			<div style="width: 100%" align="left">
+			
+			<table>
+				<tr>
+					<td>
+						<div class="form-check">
+						  <input class="form-check-input " type="radio" name="exampleRadios" id="exampleRadios1" value="3"
+						   style="    bottom: 0px;top: 0px;;cursor: pointer;"> 
+						  <label class="form-check-label checkbox-lg  " for="exampleRadios1" style="font-size: 20px;cursor: pointer;">
+						    <i class="fa-solid fa-motorcycle"></i> Expres Moto
+						  </label>
+						</div>						
+					</td>
+					<td>
+						<div class="form-check" style="margin-left: 30px;">  
+						  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="50" style="    bottom: 0px;top: 0px;cursor: pointer;">
+						  <label class="form-check-label" for="exampleRadios2" style="font-size: 20px;cursor: pointer;">
+						    <i class="fa-solid fa-stopwatch"></i> Expres 60 Minutos
+						  </label>
+						</div> 								
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="1"
+						  style="    bottom: 0px;top: 0px;;cursor: pointer;">
+						  <label class="form-check-label" for="exampleRadios3" style="font-size: 20px;cursor: pointer;">
+						    <i class="fa-solid fa-people-carry-box"></i> Cliente Recoge  
+						  </label>
+						</div>												
+					</td>
+					<td>
+						<div class="form-check" style="    margin-left: 30px;">
+						  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="2"
+						  style="    bottom: 0px;top: 0px;">
+						  <label class="form-check-label" for="exampleRadios4" style="font-size: 20px;cursor: pointer;">
+						    <i class="fa-solid fa-user"></i> Agente
+						  </label>
+						</div>							
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="100"
+						  style="    bottom: 0px;top: 0px;cursor: pointer;">
+						  <label class="form-check-label" for="exampleRadios5" style="font-size: 20px;cursor: pointer;">        
+						    <i class="fa-solid fa-list-check"></i> Todos   
+						  </label>
+						</div>						
+					</td>
+					<td align="right">  
+						<button type="button" id="" onclick="validarFolio()" class="btn btn-info" style="padding-top: 2px;padding-bottom: 2px;    margin-left: 30px;">Buscar </button>   
+					</td>
+				</tr>
+			</table>
+		</div>  
+      	
+      	    
+      	
+      	<div class="" align="center" style="display: none; width: 100%" id="esperaValidaAlmacen" >
+					<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+      </div>
+      <div class="modal-footer" style="display: none;padding-bottom: 6px;padding-top: 4px;" id="footerUsr"> 
+      		<button type="button" class="btn btn-outline-secondary" onclick="regresarEncargado()" style="font-size: 14px"><i class="fa-solid fa-arrow-left-long"> </i> Regresar </button>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="mdlAlmacenFolioKey" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%; padding-bottom: 10px;" align="center"> 
+        <h5 class="modal-title" id="" style="FONT-SIZE: 16px;">AUTORIZACION PARA REGRESAR FOLIO A CHOFER</h5>     
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+          <span aria-hidden="true">&times;</span>
+        </button> 
+      </div> 
+      <div class="modal-body" style="    padding-top: 4px;">   
+      <div align="center" style="width: 100%;margin-top: 7px;margin-bottom: 4px;display:none" id="warningUsrAlmKey">      
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+			  <label id="warningUsrAlmLblKey" style="    margin-bottom: 0px;"></label>   
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+		</div>
+      	<div style="width: 100%; display:  " id="">
+			<div class="input-group" align="center" style="width: 95%;margin-bottom: 0px;margin-top: 10px;">           
+			  <div class="input-group-prepend">
+				   <span class="input-group-text">Clave Autorización</span>  
+			 	</div>
+			 <input type="text"  id="txtKey" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" onKeyPress="if (event.keyCode == 13) regresarFolioChofer($('#txtKey').val());" >          
+			<div class="input-group-append">   
+		   	<button type="button" id="" onclick="regresarFolioChofer($('#txtKey').val())" class="btn btn-warning" style="padding-top: 2px;color: #564646;padding-bottom: 2px;">Continuar <i class="fa-solid fa-key"></i></button>         
+		 </div>
+		</div>    
+		</div>   
+      	<div class="" align="center" style="display: none; width: 100%" id="esperaValidaAlmacenKey" >
+					<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+      </div>
+      <div class="modal-footer" style="display: block;padding-bottom: 6px;padding-top: 4px;" align="right">   
+      		<button type="button" class="btn btn-outline-secondary" onclick="$('#mdlAlmacenFolioKey').modal('hide')" style="font-size: 14px"><i class="fa-solid fa-arrow-left-long"> </i> Cerrar </button>      
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="mdlCreditoCorte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%; padding-bottom: 10px;" align="center"> 
+        <h5 class="modal-title" id="" style="FONT-SIZE: 16px;">CONFIRMACION POR CORTE</h5>     
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+          <span aria-hidden="true">&times;</span>
+        </button> 
+      </div> 
+      <div class="modal-body" style="    padding-top: 4px;">   
+      <div align="center" style="width: 100%;margin-top: 7px;margin-bottom: 4px;display:none" id="warningCreditoCorte">        
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+			  <label id="warningCreditoCorteLb" style="    margin-bottom: 0px;"></label>   
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+		</div>
+      	<div style="width: 100%;" id="">
+			<div class="input-group hideCortePen" align="center" style="width: 95%;margin-bottom: 0px;margin-top: 10px;">                 
+			  <div class="input-group-prepend">
+				   <span class="input-group-text">FOLIO CORTE: </span>  
+			 	</div>
+			 <input type="text"  id="txtCreditoCorte" class="form-control" placeholder="Ingrese folio de corte.."  aria-label="Recipient's username" aria-describedby="basic-addon2" onKeyPress="if (event.keyCode == 13) consultaCorte($('#txtCreditoCorte').val());return soloNumeros(event); " >           
+			<div class="input-group-append">   
+		   <button type="button" id="" onclick="consultaCorte($('#txtCreditoCorte').val())" class="btn btn-info" style="padding-top: 2px;padding-bottom: 2px;    ">Consultar </button>          
+		 </div>
+		 
+		</div>
+		
+		  
+		</div>
+<input id="foco" type="hidden" > 
+		   
+<!-- 		<div style="width: 100%" align="center"> --> 
+<!-- 		<button type="button" id="" onclick="consultarFacturasEscaneadasCreditoCanceladas()" class="btn btn-warning" style="padding-top: 2px;padding-bottom: 2px;margin-top: 15px;">Facturas canceladas ECC <i class="fa-solid fa-users"></i></button>  -->
+<!-- 		</div>   -->
+      	
+      	<div class="table table-responsive" id="divTableCortesPendientes" style="width: 100%;height: 100%;margin-top: 10px;margin-left: 10px;    margin-left: 0px;display: none;" align="center"></div>                	    
+      	
+      	<div class="" align="center" style="display: none; width: 100%" id="esperaValidaCreditoCorte" >      
+					<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+      </div>
+      <div class="modal-footer" style="padding-bottom: 6px;padding-top: 4px;" id="footerUsr">  
+      		<button type="button" class="btn btn-outline-secondary" onclick="$('#mdlCreditoCorte').modal('hide')" style="font-size: 14px" id="kdlk"><i class="fa-solid fa-arrow-left-long"> </i> Regresar </button>      
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="mdlCreditoCorteECC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%; padding-bottom: 10px;" align="center"> 
+        <h5 class="modal-title" id="" style="FONT-SIZE: 16px;">CONFIRMACION POR CORTE</h5>     
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+          <span aria-hidden="true">&times;</span>
+        </button> 
+      </div> 
+      <div class="modal-body" style="    padding-top: 4px;">   
+      <div align="center" style="width: 100%;margin-top: 7px;margin-bottom: 4px;display:none" id="warningCreditoCorteECC">        
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+			  <label id="warningCreditoCorteLbECC" style="    margin-bottom: 0px;"></label>    
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+		</div>
+      	<div style="width: 100%;" id="">
+			<div class="input-group " align="center" style="width: 95%;margin-bottom: 0px;margin-top: 10px;">                 
+			  <div class="input-group-prepend">       
+				   <span class="input-group-text">FOLIO CORTE: </span>  
+			 	</div>
+					 <input type="text"  id="txtCreditoCorteECC" class="form-control" placeholder="Ingrese folio de corte.."  aria-label="Recipient's username" aria-describedby="basic-addon2" onKeyPress="if (event.keyCode == 13) consultaCorteECC($('#txtCreditoCorteECC').val());return soloNumeros(event); " >             
+					<div class="input-group-append">   
+				   <button type="button" id="" onclick="consultaCorteECC($('#txtCreditoCorteECC').val())" class="btn btn-info" style="padding-top: 2px;padding-bottom: 2px;    ">Consultar </button>          
+				 </div>
+		 
+			</div>
+		
+		  
+		</div>
+		
+		<div class="table table-responsive" id="divTableCortesPendientesECC" style="width: 100%;height: 100%;margin-top: 10px;margin-left: 10px;    margin-left: 0px;display: none;" align="center"></div>                	    
+      	
+      	<div class="" align="center" style="display: none; width: 100%" id="esperaValidaCreditoCorteECC" >      
+					<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+      </div>
+      <div class="modal-footer" style="padding-bottom: 6px;padding-top: 4px;" id="footerUsr">  
+      		<button type="button" class="btn btn-outline-secondary" onclick="$('#mdlCreditoCorteECC').modal('hide');$('#mdlUsrCredito').modal('toggle');" style="font-size: 14px" id="kdlk"><i class="fa-solid fa-arrow-left-long"> </i> Regresar </button>       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="mdlCreditoCobranza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%; padding-bottom: 10px;" align="center"> 
+        <h5 class="modal-title" id="" style="FONT-SIZE: 16px;">Facturas que entraran en la relacion</h5>      
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+          <span aria-hidden="true">&times;</span>
+        </button> 
+      </div> 
+      <div class="modal-body" style="    padding-top: 4px;">   
+      <div align="center" style="width: 100%;margin-top: 7px;margin-bottom: 4px;display:none" id="warningCreditoCobranza">        
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+			  <label id="warningCreditoCobranzaLb" style="    margin-bottom: 0px;"></label>   
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+		</div>
+      	<div style="width: 100%; display:  " id="">
+			<div class="input-group" align="center" style="width: 95%;margin-bottom: 0px;margin-top: 10px;">           
+			  <div class="input-group-prepend">
+				   <span class="input-group-text">Escanee factura</span>  
+			 	</div>
+			 <input type="text"  id="txtCreditoCobranza" class="form-control" placeholder="Factura.."  aria-label="Recipient's username" aria-describedby="basic-addon2" onKeyPress="if (event.keyCode == 13) consultaCobranzaFactura($('#txtCreditoCobranza').val());return soloNumeros(event); " >           
+			<div class="input-group-append">   
+		   <button type="button" id="" onclick="consultaCobranzaFactura($('#txtCreditoCobranza').val())" class="btn btn-info" style="padding-top: 2px;padding-bottom: 2px;    ">Consultar </button>          
+		 </div>
+		</div> 
+		</div>   
+			<div style="width: 100%" align="left">
+		</div>  
+      	<div style="width: 100%;    margin-top: 10px;" align="left" id="divFoliosCorbanza"> 
+			Facturas:
+			<label id="flsCobranza">
+				
+			</label>
+		</div>    
+      	</div>   
+			
+      	    
+      	
+      	<div class="" align="center" style="display: none; width: 100%" id="esperaValidaCreditoCobranza" >
+					<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+		   <div style="width: 100%">
+      <div class="modal-footer" style="display: block;padding-bottom: 6px;padding-top: 4px;" id="footerUsrCobranza" align="right">
+      		<button type="button" id="enviarEncargado" onclick="sendFacturasCobranza()" class="btn btn-success" style="">Enviar Facturas <i class="fa-solid fa-arrow-up-from-bracket"></i></button>       
+      </div>  
+      </div>   
+      </div>
+     
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="mdlCreditoCorteFinales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">    
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header" style="width: 100%; padding-bottom: 10px;" align="center"> 
+				<h5 class="modal-title" id="" style="FONT-SIZE: 16px;">CONFIRMACION FOLIO DE CORTES </h5>     
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+				<span aria-hidden="true">&times;</span>
+				</button> 
+			</div> 
+			<div class="modal-body" style="    padding-top: 4px;">   
+				<div align="center" style="width: 100%;margin-top: 7px;margin-bottom: 4px;display:none" id="warningCreditoCorteFinal">        
+					<div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+						<label id="warningCreditoCorteLbFinal" style="    margin-bottom: 0px;">Escanee los folios de corte que enviara a credito</label>   
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+				<div class="" align="center" style="display: none; width: 100%" id="esperaValidaCreditoCorteFinal" >
+					<img src="images/espera.gif" width="35" style="margin-top: 10px;" ></img> 
+				</div>
+			</div>  
+			<div style="width: 100%">    
+				<div class="modal-footer" style="padding-bottom: 6px;padding-top: 4px; display: none" id="footerUsrFinal" align="right" >   
+					<button type="button" class="btn btn-success" onclick="sendFacturasEncargado()" style="font-size: 14px">Enviar facturas a ecc </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+ 
+  
+
+ 
+ 
+ <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="mldDetalle">     
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      
+      	<table style="    margin-top: 10px;     margin-left: 10px;     margin-right: 10px;     margin-bottom: 10;     margin-bottom: 10px;">   
+	      	<tr>
+      			<td colspan="4" style="background: black;     color: white;     font-weight: bold;">
+      				DETALLE FACTURA
+      			</td>
+      		</tr>
+      		<tr>
+      			<td>
+      				Factura: u202342
+      			</td>
+      			<td>
+      				Pedido: 719957
+      			</td>
+      			<td>
+      				Ode: 3851981
+      			</td>
+      			<td>
+      				Fecha pedido: 2023-10-25
+      			</td>
+      		</tr>
+      		<tr>
+      			<td>
+      				Folio trayecto: 4623
+      			</td>
+      			<td>
+      				Folio corte: 4654
+      			</td>
+      			<td>
+      				Folio cobranza: 15
+      			</td>
+      			<td>
+	
+      			</td> 
+      		</tr>
+      		<tr>
+      			<td colspan="4" style="background: black;     color: white;     font-weight: bold;">
+      				ALMACEN
+      			</td>
+      		</tr>
+      		<tr>
+      			<td align="center"> 
+      				Fecha Asignacion a Chofer 
+      			</td>
+      			<td align="center">
+      				Fecha Inicio Ruta 
+      			</td>
+      			<td align="center">
+      				Fecha Fin Ruta 
+      			</td>
+      			<td align="center">
+      				Fecha Entrega Factura 
+      			</td>
+      		</tr>
+      		<tr>
+      			<td align="center">
+      				2023-10-25 10:25:20 
+      			</td>
+      			<td align="center">
+      				2023-10-25 10:20:20 
+      			</td>
+      			<td align="center">
+      				2023-10-26 08:20:20 
+      			</td>
+      			<td align="center">
+      				2023-10-26 07:10:20 
+      			</td>
+      		</tr>
+      		<tr>
+      			<td colspan="4" style="background: black;     color: white;     font-weight: bold;">
+      				CONFIRMACION DE FACTURAS
+      			</td>
+      		</tr>
+      		<tr>
+      			<td align="left"> 
+      				Fecha Confirma Almacen 
+      			</td>
+      			<td align="center">
+      				2023-10-25 10:25:20 
+      			</td>
+      			<td align="center" colspan="2" style="    padding-bottom: 10px;">
+      				 SY-U35 Andres Aquino Garcia
+      			</td>
+      		</tr>
+       		
+      		<tr>
+      			<td align="left"> 
+      				Fecha Confirma Aux Credito 
+      			</td>
+      			<td align="center">
+      				2023-10-12 07:40:00 
+      			</td>
+      			<td align="center" colspan="2" style="    padding-bottom: 10px;">
+      				 SY-U35 Andres Aquino Garcia
+      			</td>
+      		</tr>
+      		<tr>
+      			<td align="left">  
+      				Fecha Confirma ECC 
+      			</td> 
+      			<td align="center">
+      				2023-10-24 16:00:03  
+      			</td>
+      			<td align="center" colspan="2" style="    padding-bottom: 10px;">
+      				 SY-U35 Andres Aquino Garcia
+      			</td>
+      		</tr>
+      		<tr>
+      			<td align="left">  
+      				Fecha Genera Cobranza
+      			</td> 
+      			<td align="center">
+      				2023-10-28 10:30:20 
+      			</td>
+      			<td align="center" colspan="2" style="    padding-bottom: 10px;"> 
+      				 SY-U35 Andres Aquino Garcia
+      			</td>
+      		</tr>
+      	</table>
+      
+        
+       <div class="table table-responsive" id="divTableMonitorgDetalle" style="width: 100%;height: 100%;margin-top: 10px;margin-left: 10px;    margin-left: 0px;display: none"></div>     
+       	<div class="" align="center" style="display: none; width: 100%;margin-bottom: 20px;margin-top: 10px;" id="esperaValidaCreditoCorteFinalD" >  
+					<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+		<div class="modal-footer" align="right">
+      			 	<button type="button" class="btn btn-secondary" onclick="$('#mldDetalle').modal('hide')">Cerrar</button> 
+      	</div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="mdlRegresarFolioChofer">     
+  <div class="modal-dialog modal-lg">    
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%; padding-bottom: 10px;" align="center"> 
+        <label class="modal-title" id="mdlRegresarFolioChoferLb" style="FONT-SIZE: 16px;">DETALLE DE FOLIOS QUE SE REGRESARAN</label>
+        <input id="folioConfirmacion" type="hidden">          
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">       
+          <span aria-hidden="true">&times;</span>
+        </button> 
+      </div>  
+      <div style="width: 100%" align="center">
+	      <div align="center" style="width: 90%;margin-top: 7px;margin-bottom: 4px;display:none" id="warningDetalleChofer">        
+				<div class="alert alert-success alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+				  <label id="warningDetalleChoferLb" style="    margin-bottom: 0px;"></label>   
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				</div>    
+		</div>
+	   </div> 		      
+       <div class="table table-responsive" id="divTableDetalleChofer" style="width: 100%;height: 100%;margin-top: 10px;margin-left: 10px;    margin-left: 0px;display: none;" align="center"></div>          
+       	<div class="" align="center" style="display: none; width: 100%;margin-bottom: 20px;margin-top: 10px;" id="esperaValidaDetalleChofer" >  
+					<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+		
+		<div style="width: 100%">    
+	      <div class="modal-footer" style="display: block;padding-bottom: 6px;padding-top: 4px; wi" id="footerUsrFinal" align="right" >
+	      	<button type="button" class="btn btn-warning" onclick="confirmaRegresaChofer()" style="font-size: 14px" id="btnRegresarFolio">Confirmar Regresar Folio <i class="fa-solid fa-trash-can"></i></button>
+	      	<button type="button" id="enviarAlmacenBtn" onclick="sendFacturasCredito()" class="btn btn-success" style="display:none">Enviar Facturas <i class="fa-solid fa-arrow-up-from-bracket"></i></button>             
+<!-- 	      	<button type="button" class="btn btn-outline-secondary" onclick="$('#mldDetalle').modal('hide')" style="font-size: 14px"><i class="fa-solid fa-arrow-left-long"> </i> Cerrar </button>  -->
+	      		       
+	      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="mdlRegresarFolioCredito">     
+  <div class="modal-dialog modal-lg">     
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%; padding-bottom: 10px;" align="center"> 
+        <label class="modal-title" id="mdlRegresarFolioCreditoLb" style="FONT-SIZE: 16px;">DETALLE DE FACTURAS QUE SE REGRESARAN</label>
+        <input id="folioConfirmacion" type="hidden">          
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">       
+          <span aria-hidden="true">&times;</span>
+        </button> 
+      </div>  
+      <div style="width: 100%" align="center">  
+	      <div align="center" style="width: 90%;margin-top: 7px;margin-bottom: 4px;display:none" id="warningDetalleCredito">        
+				<div class="alert alert-success alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+				  <label id="warningDetalleCreditoLb" style="    margin-bottom: 0px;"></label>   
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+			</div>
+			<div align="center" style="width: 90%;margin-top: 7px;margin-bottom: 4px;display:none" id="dangerDetalleCredito">        
+			<div class="alert alert-danger alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+				<label id="dangerDetalleCreditoLb" style="    margin-bottom: 0px;"></label>   
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+					<span aria-hidden="true">&times;</span> 
+				</button>
+			</div>    
+		</div>  
+	   </div> 		      
+       <div class="table table-responsive" id="divTableDetalleCredito" style="width: 100%;height: 100%;margin-top: 10px;margin-left: 10px;    margin-left: 0px;display: none;    margin-bottom: 3px;" align="center"></div>           
+       	<div class="" align="center" style="display: none; width: 100%;margin-bottom: 20px;margin-top: 0px;" id="esperaValidaDetalleCredito" >    
+				<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+		<div style="width: 100%" align="center">
+			<label id="lblTotalEnviarCredito" style="display: none;background: black;color: white;font-weight: bold;padding: 4px;"></label>       
+			<div class="countdown" style="display: none" id="ContSegundo">    
+	        	<div id="segundo" class="countdown-timer" >5</div>  
+	    	</div>
+	    </div>  
+		
+		<div style="width: 100%">    
+	      <div class="modal-footer" style="display: block;padding-bottom: 6px;padding-top: 4px; wi" id="footerUsrFinal" align="right" >
+	      	<button type="button" class="btn btn-warning" onclick="confirmaRegresarAlmacen()" style="font-size: 14px" id="btnRegresarFolioCredito">Confirmar Cancelar Folio <i class="fa-solid fa-trash-can"></i></button> 	
+	      	<button type="button" id="btnSendCredito" onclick="sendFacturasEncargado()" class="btn btn-success" style="display:none">Enviar Facturas a ECC <i class="fa-solid fa-arrow-up-from-bracket"></i></button>               
+<!-- 	      	<button type="button" class="btn btn-outline-secondary" onclick="$('#mldDetalle').modal('hide')" style="font-size: 14px"><i class="fa-solid fa-arrow-left-long"> </i> Cerrar </button>  -->
+	      		       
+	      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="mdlRegresarFolioCreditoECC">     
+  <div class="modal-dialog modal-lg">     
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%; padding-bottom: 10px;" align="center"> 
+        <label class="modal-title" id="mdlRegresarFolioCreditoLbECC" style="FONT-SIZE: 16px;">DETALLE DE FACTURAS QUE SE REGRESARAN</label>
+        <input id="folioConfirmacionECC" type="hidden">          
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">       
+          <span aria-hidden="true">&times;</span>
+        </button> 
+      </div>  
+      <div style="width: 100%" align="center">  
+	      <div align="center" style="width: 90%;margin-top: 7px;margin-bottom: 4px;display:none" id="warningDetalleCreditoECC">        
+				<div class="alert alert-success alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+				  <label id="warningDetalleCreditoLbECC" style="    margin-bottom: 0px;"></label>   
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+			</div>
+			<div align="center" style="width: 90%;margin-top: 7px;margin-bottom: 4px;display:none" id="dangerDetalleCreditoECC">        
+			<div class="alert alert-danger alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+				<label id="dangerDetalleCreditoLbECC" style="    margin-bottom: 0px;"></label>   
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+					<span aria-hidden="true">&times;</span> 
+				</button>
+			</div>    
+		</div>  
+	   </div> 		      
+       <div class="table table-responsive" id="divTableDetalleCreditoECC" style="width: 100%;height: 100%;margin-top: 10px;margin-left: 10px;    margin-left: 0px;display: none;    margin-bottom: 3px;" align="center"></div>           
+       	<div class="" align="center" style="display: none; width: 100%;margin-bottom: 20px;margin-top: 0px;" id="esperaValidaDetalleCreditoECC" >    
+				<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+		<div style="width: 100%" align="center">
+			<label id="lblTotalEnviarCreditoECC" style="display: none;background: black;color: white;font-weight: bold;padding: 4px;"></label>       
+			<div class="countdown" style="display: none" id="ContSegundoECC">    
+	        	<div id="segundoECC" class="countdown-timer" >5</div>  
+	    	</div>
+	    </div>  
+		
+		<div style="width: 100%">    
+	      <div class="modal-footer" style="display: block;padding-bottom: 6px;padding-top: 4px; wi" id="footerUsrFinalECC" align="right" >
+	      	<button type="button" class="btn btn-warning" onclick="confirmaRegresarAlmacenECC()" style="font-size: 14px" id="btnRegresarFolioCreditoECC">Confirmar Cancelar Folio <i class="fa-solid fa-trash-can"></i></button> 	
+	      	<button type="button" id="btnSendCreditoECC" onclick="sendFacturasEncargadoECC()" class="btn btn-success" style="display:none">Confirmar Facturas <i class="fa-solid fa-arrow-up-from-bracket"></i></button>                
+	      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+   
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="mdlRegresarFolioCreditoConfirma">     
+  <div class="modal-dialog modal-lg">     
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%; padding-bottom: 10px;" align="center"> 
+        <label class="modal-title" id="mdlRegresarFolioCreditoLbConfirma" style="FONT-SIZE: 16px;">DETALLE DE FACTURAS QUE SE REGRESARAN</label>
+                  
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">       
+          <span aria-hidden="true">&times;</span>
+        </button> 
+      </div>  
+      <div style="width: 100%" align="center">  
+	      <div align="center" style="width: 90%;margin-top: 7px;margin-bottom: 4px;display:none" id="warningDetalleCreditoConfirma">        
+				<div class="alert alert-success alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+				  <label id="warningDetalleCreditoLbConfirma" style="    margin-bottom: 0px;"></label>   
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+			</div>
+			<div align="center" style="width: 90%;margin-top: 7px;margin-bottom: 4px;display:none" id="dangerDetalleCreditoConfirma">        
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+				<label id="dangerDetalleCreditoLbConfirma" style="    margin-bottom: 0px;"></label>   
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+					<span aria-hidden="true">&times;</span> 
+				</button>
+			</div>    
+		</div>  
+	   </div> 		      
+       <div class="table table-responsive" id="divTableDetalleCreditoConfirma" style="width: 100%;height: 100%;margin-top: 10px;margin-left: 10px;    margin-left: 0px;display: none;    margin-bottom: 3px;" align="center"></div> 
+       <div class="" id="newFechaVencimiento" style="width: 100%;height: 100%;margin-top: 10px;margin-left: 10px;    margin-left: 0px;display: none;    margin-bottom: 3px;" align="left">       
+       <table style="width: 98%" >
+       <tr>
+       <td align="center">
+       	<div style="width: 98%; color: white;background: black; font-weight: bold;    padding-top: 5px;     padding-bottom: 5px;">       
+       		Seleccione fecha de vencimiento que tendran las facturas no cobradas 
+       	</div>
+       </td>
+       <td align="right">  
+		<div class="input-group " align="center" style="width: 95%;margin-bottom: 0px;">                 
+			<input type="text"  id="txtFechaIniConfirma" class="form-control " placeholder="Seleccione fecha..."  aria-label="Recipient's username" aria-describedby="basic-addon2" style="text-align: center;" readonly>                     
+		</div>       		
+       </td>
+       </tr>
+              </table>
+       </div>           
+       	<div class="" align="center" style="display: none; width: 100%;margin-bottom: 20px;margin-top: 0px;" id="esperaValidaDetalleCreditoConfirma" >    
+				<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+		<div style="width: 100%" align="center">
+			       
+			<div class="countdown" style="display: none" id="ContSegundoConfirma">      
+	        	<div id="segundoConfirma" class="countdown-timer" >5</div>  
+	    	</div>
+	    </div>  
+		
+		<div style="width: 100%">    
+	      <div class="modal-footer" style="display: block;padding-bottom: 6px;padding-top: 4px; wi" id="footerUsrFinalConfirma" align="right" >
+	      	<button type="button" class="btn btn-warning" onclick="sendConfirma()" style="font-size: 14px" id="btnRegresarFolioCreditoConfirma">Confirmar Facturas <i class="fa-solid fa-trash-can"></i></button>   	
+<!-- 	      	<button type="button" class="btn btn-outline-secondary" onclick="prs()" style="font-size: 14px"><i class="fa-solid fa-arrow-left-long"> </i> Cerrar </button>  -->  
+	      		       
+	      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="mdlRegresarFolioCreditoGenera">     
+  <div class="modal-dialog modal-lg">     
+    <div class="modal-content">
+      <div class="modal-header" style="width: 100%; padding-bottom: 10px;" align="center"> 
+        <label class="modal-title" id="mdlRegresarFolioCreditoLbGenera" style="FONT-SIZE: 16px;">DETALLE DE FACTURAS QUE SE REGRESARAN</label>
+                  
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">       
+          <span aria-hidden="true">&times;</span>
+        </button> 
+      </div>  
+      <div style="width: 100%" align="center">  
+	      <div align="center" style="width: 90%;margin-top: 7px;margin-bottom: 4px;display:none" id="warningDetalleCreditoGenera">        
+				<div class="alert alert-success alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+				  <label id="warningDetalleCreditoLbGenera" style="    margin-bottom: 0px;"></label>   
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+			</div>
+			<div align="center" style="width: 90%;margin-top: 7px;margin-bottom: 4px;display:none" id="dangerDetalleCreditoGenera">        
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+				<label id="dangerDetalleCreditoLbGenera" style="    margin-bottom: 0px;"></label>   
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+					<span aria-hidden="true">&times;</span> 
+				</button>
+			</div>    
+		</div>  
+	   </div> 		      
+       <div class="table table-responsive" id="divTableDetalleCreditoGenera" style="width: 100%;height: 100%;margin-top: 10px;margin-left: 10px;    margin-left: 0px;display: none;    margin-bottom: 3px;" align="center"></div>
+        <div class="" id="autenticacionGenera" style="width: 100%;height: 100%;margin-top: 10px;margin-left: 10px;    margin-left: 0px;display: none;    margin-bottom: 3px;" align="left">       
+       <table style="width: 98%" >
+       <tr>
+        <td align="center">
+		Hay facturas no escaneadas, ingrese contraseña para continuar         	 
+       </td>
+       <td align="center">
+			<div class="input-group" align="center" style="width: 95%;margin-bottom: 0px;margin-top: 10px;">          
+			  
+			 <input type="text"  id="passCreditoGenera" class="form-control" placeholder="Ingrese contraseña..."  aria-label="Recipient's username" aria-describedby="basic-addon2" onKeyPress="if (event.keyCode == 13) validarPassGenera(); ">        
+			<div class="input-group-append">    
+		   <button type="button" id="enviarAlmacenGenera" onclick="validarPassGenera()" class="btn btn-warning" style="padding-top: 2px;color: #564646;padding-bottom: 2px;">Continuar <i class="fa-solid fa-key"></i></button>   
+		 </div>
+		</div>          	 
+       </td>
+       </tr>
+              </table>
+       </div>            
+       	<div class="" align="center" style="display: none; width: 100%;margin-bottom: 20px;margin-top: 0px;" id="esperaValidaDetalleCreditoGenera" >    
+				<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+		<div style="width: 100%" align="center">
+			       
+			<div class="countdown" style="display: none" id="ContSegundoGenera">      
+	        	<div id="segundoGenera" class="countdown-timer" >5</div>  
+	    	</div> 
+	    </div>  
+		
+		<div style="width: 100%">    
+	      <div class="modal-footer" style="display: block;padding-bottom: 6px;padding-top: 4px; wi" id="footerUsrFinalGenera" align="right" >
+	      	<button type="button" class="btn btn-warning" onclick="sendGenerCobranza()" style="font-size: 14px" id="btnRegresarFolioCreditoGenera">Confirmar Facturas <i class="fa-solid fa-trash-can"></i></button>   	
+<!-- 	      	<button type="button" class="btn btn-outline-secondary" onclick="$('#mldDetalle').modal('hide')" style="font-size: 14px"><i class="fa-solid fa-arrow-left-long"> </i> Cerrar </button>  -->
+	      		       
+	      </div>
+      </div> 
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="mdlFirma"> 
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Cabecera del modal -->
+      <div class="modal-header">
+        <h4 class="modal-title custom-title">Facturas Pendientes</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Contenido del modal -->
+      <div class="modal-body">
+      	<div align="center" style="width: 100%;margin-top: 7px;margin-bottom: 4px;display:none" id="msjFirm">        
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding-top: 2px;padding-bottom: 2px;width: 100%;margin-bottom: 0px;">    
+				<label id="msjFirmLb" style="    margin-bottom: 0px;"></label>    
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top: 1px;padding-bottom: 0px;">
+					<span aria-hidden="true">&times;</span> 
+				</button>
+			</div>    
+		</div>
+        <form>
+          <div class="form-group">
+            <label for="firmaUsuario">Usuario:</label>
+            <input type="text" class="form-control" id="firmaUsuario">
+          </div>
+          <div class="form-group">
+            <label for="firmaContrasena">Contraseña:</label>
+            <input type="password" class="form-control" id="firmaContrasena" onchange="validaPsws(this);" > 
+          </div>
+        </form>
+       <div class="" align="center" style="display: none; width: 100%;margin-bottom: 20px;margin-top: 0px;" id="esperaFirm" >    
+			<img src="images/espera.gif" width="35" style="  /* margin-bottom: 10px; */margin-top: 10px;" ></img> 
+		</div>
+      </div>
+      
+      <!-- Pie del modal -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"  onclick="validarFirma()">Validar</button>
+      </div>
+      
+    </div>
+  </div>
+</div>

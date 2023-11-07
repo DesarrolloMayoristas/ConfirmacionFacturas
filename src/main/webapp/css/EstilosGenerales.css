@@ -1,0 +1,870 @@
+.EG_containerPrincipal 
+{ 
+	margin: 0 auto;
+	width: 100%;
+	left:0;
+	padding-bottom:0;
+	padding-top:0;
+	text-align: center;
+}
+
+.EG_divPrincipal
+{
+	 width:100%
+}
+
+.EG_infoUsuario
+{
+	color: white;
+}
+
+.EG_lbTituloEncabezado
+{
+	font-family: arial;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+}
+
+.EG_lbtextog
+{
+	font-family: arial;
+	font-size: 10px;
+	
+	color: black;
+}
+
+.EG_lbtexto
+{
+	font-family: arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: black;
+}
+
+.EG_lbtextoAzul
+{
+	font-family: arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: #0066CC;
+}
+
+.tbl
+{
+	margin-top: 8px;
+}
+
+.EG_lbChicaTexto
+{
+	font-family: arial;
+	font-size: 11px;
+	font-weight: bold;
+	color: black;
+}
+
+
+.EG_DivGrid
+{
+	align-content:center; 
+	font-size: 80%; 
+	font-weight: normal;  
+	font-family:Arial;
+}
+
+
+
+.EG_btnAplicarGrid
+{    
+	font-weight: bold;
+    color:transparent;
+    padding:0px;
+    width:16px;
+    height:15px;
+    margin:0px;
+    text-align:center;
+    background-repeat: no-repeat;
+    background-image: url('../images/confirmar.png');
+    background-color:transparent;
+    border: none;
+}
+
+
+
+.EG_link
+{
+	font-weight: normal;    
+    background:transparent;
+    border: 0px solid red;
+    font-family: arial;
+	font-size: 11px;
+	text-align: right;
+	padding: 0px;
+     
+}
+
+.EG_link_color
+{
+	font-weight: bold;    
+    background:transparent;
+    border: 0px solid red;
+    font-family: arial;
+	font-size: 11px;
+	text-align: right;
+	padding: 0px;
+	color: 	#235898;
+	text-decoration: underline;
+}
+
+
+/******************************* ESTILOS PARA BOTONES DE GRID ******************************/
+
+.EG_btnImpGrid
+{    
+	font-weight: bold;
+    color:transparent;
+    padding:0px;
+    width:16px;
+    height:15px;
+    margin:0px;
+    text-align:center;
+    background-repeat: no-repeat;
+    background-image: url('../images/impresora.png');
+    background-color:transparent;
+    border: none;
+}
+
+.EG_btnCancela
+{    
+	font-weight: bold;
+    color:transparent;
+    padding:0px;
+    width:15px;
+    height:15px;
+    background-repeat: no-repeat;
+    margin:0px;
+    text-align:center;
+    background-image: url('../images/cancelar.png');
+    background-color:transparent;
+    border: none;
+}
+
+
+.EG_btnRevertir
+{    
+	font-weight: bold;
+    color:transparent;
+    padding:0px;
+    width:15px;
+    height:15px;
+    background-repeat: no-repeat;
+    margin:0px;
+    text-align:center;
+    background-image: url('../images/revertir.png');
+    background-color:transparent;
+    border: none;
+}
+
+
+.EG_btnRemover
+{    
+	font-weight: bold;
+    color:transparent;
+    padding:0px;
+    width:20px;
+    height:20px;
+    background-repeat: no-repeat;
+    margin:0px;
+    text-align:center;
+    background-image: url('../images/remover.png');
+    background-color:transparent;
+    border: none;
+}
+
+
+.EG_hide
+{
+   display:none;
+}
+
+.EG_lb_link
+{
+    font-weight: BOLD;
+    color:#2E64FE;    
+    background:transparent;
+    border: 0px solid red;
+    text-decoration: underline;
+}
+
+
+
+.EG_txt
+{
+	border:1px solid #C0C0C0;
+	border-radius: 2px;
+	font-family: arial;
+	font-size: 12px;
+	padding: 2px;
+	text-align: center;
+	width: 90px;
+}
+
+.EG_cmb
+{
+	width:100px; 
+	border:1px solid #C0C0C0;
+	border-radius: 2px;
+	font-family: arial;
+	font-size: 11px;
+	padding: 2px;
+}
+
+.EG_lbTituloAzul
+{
+	font-family: arial;
+	font-size: 22px;
+	font-weight: bold;
+	color: #2866AF;
+}
+
+.EG_calendario
+{
+	width:150px; 
+	padding:2px; 
+	height:25px; 
+	font-size: 12px; 
+	font-weight: normal;
+	text-align:center;
+	border:1px solid #C0C0C0;
+	border-radius: 3px;
+}
+
+
+.EG_divCOB
+{
+	text-align:center;
+	font-weight: bold;
+    color:white;
+    width:100%;
+    background:#D3547D; 
+    font-family: arial;
+	font-size: 10px;
+}
+
+.EG_divHR
+{
+	text-align:center;
+	font-weight: bold;
+    color:white;
+    width:100%;
+    background:#20B2AA; 
+    font-family: arial;
+	font-size: 10px;
+}
+
+.EG_divOI
+{
+	text-align:center;
+	font-weight: bold;
+    color:white;
+    width:100%;
+    background:#FF6347; 
+    font-family: arial;
+	font-size: 10px;
+}
+
+
+.EG_divCON
+{
+	text-align:center;
+	font-weight: bold;
+    color:white;
+    width:100%;
+    background:#CD853F; 
+    font-family: arial;
+	font-size: 10px;
+}
+
+.EG_divCRE
+{
+	text-align:center;
+	font-weight: bold;
+    color:white;
+    width:100%;
+    background:#DA70D6; 
+    font-family: arial;
+	font-size: 10px;
+}
+
+.EG_divOTR
+{
+	text-align:center;
+	font-weight: bold;
+    color:white;
+    width:100%;
+    background:#C71585; 
+    font-family: arial;
+	font-size: 10px;
+}
+
+.EG_divLIN
+{
+	text-align:center;
+	font-weight: bold;
+    color:white;
+    width:100%;
+    background:#2E9AFE; 
+    font-family: arial;
+	font-size: 10px;
+}
+
+.EG_divFHR
+{
+	text-align:center;
+	font-weight: bold;
+    color:white;
+    width:100%;
+    background:#A0522D; 
+    font-family: arial;
+	font-size: 10px;
+}
+
+.EG_divTOT
+{
+	font-weight: bold;
+    color:white;
+    background:#000000; 
+    font-family: arial;
+	font-size: 10px;
+}
+
+
+
+.EG_divTotalIngreso
+{
+	text-align: right;
+    width:100%;
+    color:black;
+    font-weight:normal;
+    font-family: arial;
+	font-size: 94%;
+}
+
+
+.total-row {
+  font-weight: bold;
+  font-size:11px;
+  background-color:	#F0F8FF;
+  border: 1px solid WHITE;
+  color:BLACK;
+  font-family:Arial;
+}
+
+.divClasica
+{
+	text-align: right;
+	font-family: arial;
+	font-size: 10px;
+}
+
+
+/******************** ESTILOS PARA LOS ESTATUS DEL GRID ********************/
+.EG_IPendiente
+{
+	font-weight: bold;
+    color:white;
+    width:100%;
+    height:100%;
+    padding:0px;
+    margin:0px;
+    background:#40C8F4 ;
+    font-family: arial;
+	font-size: 11px;
+}
+
+.EG_IConfirmado
+{
+	font-weight: bold;
+    color:white;
+    width:100%;
+    height:100%;
+    padding:0px;
+    margin:0px;
+    background:#FF6347;
+   
+    font-family: arial;
+	font-size: 11px;
+}
+
+.EG_ICancelado
+{
+	font-weight: bold;
+    color:white;
+    width:100%;
+    height:100%;
+    padding:0px;
+    margin:0px;
+    background:#DC143C;
+    font-family: arial;
+	font-size: 11px; 
+}
+
+.EG_ICorteDeCaja
+{
+	font-weight: bold;
+    color:white;
+    width:100%;
+    height:100%;
+    padding:0px;
+    margin:0px;
+    background:#4472C4;
+    font-family: arial;
+	font-size: 11px; 
+}
+
+
+.EG_IAsignado
+{
+	font-weight: bold;
+    color:white;
+    width:100%;
+    height:100%;
+    padding:0px;
+    margin:0px;
+    background:#BA55D3;
+    font-family: arial;
+	font-size: 11px; 
+}
+
+
+.EG_IPoliza
+{
+	font-weight: bold;
+    color:white;
+    width:100%;
+    height:100%;
+    padding:0px;
+    margin:0px;
+    background:#32CD32;
+    font-family: arial;
+	font-size: 11px; 
+}
+
+.EG_IRedondeo
+{
+	font-weight: bold;
+    color:white;
+    width:100%;
+    height:100%;
+    padding:0px;
+    margin:0px;
+    background:#BA55D3;
+    font-family: arial;
+	font-size: 10px; 
+}
+
+.EG_INomina
+{
+	font-weight: bold;
+    color:white;
+    width:100%;
+    height:100%;
+    padding:0px;
+    margin:0px;
+    background:#FF1493;
+    font-family: arial;
+	font-size: 10px; 
+}
+
+.disabledMenu {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.enableMenu {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+/*****************************  Estilos para Panel de Espera ******************************/
+
+.popupEspera {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width:100%;
+    height:100%;
+    z-index: 1001;
+    min-height:1500px;
+    background:rgba(0,0,0,0.20);
+}
+
+.content-popupEspera {
+    margin:0px auto;
+    margin-top:200px;
+    position:relative;
+    padding:10px;
+    width:30%;
+    min-height:200px;
+    max-height:300px;
+    
+    border-radius:4px;
+    background-color:#FFFFFF;
+    box-shadow: 0 2px 5px #666666;
+    overflow: auto;
+}
+
+.content-popupEspera h2 {
+    color:#0066CC;
+   /* border-bottom: 1px solid #4169E1;*/
+    font-size: 100%;font-weight: bold;
+	vertical-align: middle;
+}
+
+.popupEspera-overlay {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    display:none;
+    background-color: #777777;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+}
+
+/*****************************  Estilos para Panel Cancelacion ******************************/
+
+.popupCE {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width:100%;
+    height:100%;
+    z-index: 1001;
+    min-height:1500px;
+    background:rgba(0,0,0,0.20);
+}
+
+.content-popupCE  {
+    margin:0px auto;
+    margin-top:300px;
+    position:relative;
+    padding:10px;
+    width:560px;
+    max-height:250px;
+    border-radius:4px;
+    background-color:#FFFFFF;
+    box-shadow: 0 2px 5px #666666;
+    overflow: auto;
+}
+
+.content-popupCE  h2 {
+    color:#0066CC;
+   /* border-bottom: 1px solid #4169E1;*/
+    font-size: 100%;font-weight: bold;
+	vertical-align: middle;
+}
+
+.popupCE -overlay {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    display:none;
+    background-color: #777777;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+}
+
+
+
+/*****************************  Estilos para Radio Buttons ******************************/
+.funkyradio label {
+    /*min-width: 400px;*/
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #D1D3D4;
+    font-weight: normal;
+    padding:4px;
+}
+.funkyradio input[type="radio"]:empty, .funkyradio input[type="checkbox"]:empty {
+    display: none;
+}
+.funkyradio input[type="radio"]:empty ~ label, .funkyradio input[type="checkbox"]:empty ~ label {
+    position: relative;
+    text-indent: 2.25em;
+   
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding:4px;
+}
+.funkyradio input[type="radio"]:empty ~ label:before, .funkyradio input[type="checkbox"]:empty ~ label:before {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    content:'';
+    width: 2.5em;
+    background: #D1D3D4;
+    border-radius: 3px 0 0 3px;
+}
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before, .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+    content:'\2714';
+    text-indent: .9em;
+    color: #C2C2C2;
+}
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label, .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+    color: #888;
+}
+.funkyradio input[type="radio"]:checked ~ label:before, .funkyradio input[type="checkbox"]:checked ~ label:before {
+    content:'\2714';
+    text-indent: .9em;
+    color: #333;
+    background-color: #ccc;
+}
+.funkyradio input[type="radio"]:checked ~ label, .funkyradio input[type="checkbox"]:checked ~ label {
+    color: #777;
+}
+.funkyradio input[type="radio"]:focus ~ label:before, .funkyradio input[type="checkbox"]:focus ~ label:before {
+    box-shadow: 0 0 0 3px #999;
+}
+.funkyradio-default input[type="radio"]:checked ~ label:before, .funkyradio-default input[type="checkbox"]:checked ~ label:before {
+    color: #333;
+    background-color: #ccc;
+}
+.funkyradio-primary input[type="radio"]:checked ~ label:before, .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #337ab7;
+}
+.funkyradio-success input[type="radio"]:checked ~ label:before, .funkyradio-success input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #5cb85c;
+}
+.funkyradio-danger input[type="radio"]:checked ~ label:before, .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #d9534f;
+}
+.funkyradio-warning input[type="radio"]:checked ~ label:before, .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #f0ad4e;
+}
+.funkyradio-info input[type="radio"]:checked ~ label:before, .funkyradio-info input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #5bc0de;
+}
+
+.btn-circle {
+    width: 60px;
+    height: 60px;
+    padding: 6px 0px;
+    border-radius:34px;   
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+ 
+ 
+ .textMenu
+ {
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: initial; 
+ }
+ 
+ 
+ 
+ 
+ .lblcls
+ {
+ 
+    margin-bottom: 0px;
+    background: #a6bfeb; 
+    color: white;
+    font-weight: bold;
+    padding-right: 4px;
+    border-radius: 79px;
+    padding-left: 4px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+  
+ }
+ .lblclsSuccess      
+ {
+ 
+    margin-bottom: 0px;
+    background: #28a745;  
+    color: white;
+    font-weight: bold;
+    padding-right: 4px;
+    border-radius: 79px;
+    padding-left: 4px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+  
+ }
+ 
+ .cardcls:hover{ 
+   border: 2px solid #3E7DC0;     	   
+}      
+    
+ .cardcls
+ {
+ 	margin-bottom: 10px;
+ }
+ 
+ 
+
+.hideBtn
+{
+	 opacity: 0.5;  
+    pointer-events: none;
+}
+ 
+ 
+ 
+ #segundo {
+    font-weight: bold;
+    color: #17a2b8;
+    font-size: 41px;
+    margin-top: 6px;  
+}
+#segundoGenera {        
+    font-weight: bold;
+    color: #17a2b8;
+    font-size: 41px;
+    margin-top: 6px;  
+}
+#segundoConfirma {       
+    font-weight: bold;
+    color: #17a2b8;
+    font-size: 41px;
+    margin-top: 6px;  
+}
+
+ #segundoECC { 
+    font-weight: bold;
+    color: #17a2b8;
+    font-size: 41px;
+    margin-top: 6px;  
+}
+.countdown {
+    text-align: center; 
+    font-family: Arial, sans-serif;
+    font-size: 36px;
+    color: #333;
+    background-color: #f0f0f0;
+    padding: 0;
+    border-radius: 44px;
+    width: 69px;
+    height: 69px; /* Mismo valor que el ancho para un círculo perfecto */
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden; /* Para ocultar el contenido que se desborda */
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+
+.countdown::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px solid transparent;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+    top: 0;
+    left: 0;
+    transform-origin: center;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+ 
+.englobamiento {  display: grid;
+  grid-template-columns: 20.8% 1fr;
+  grid-template-rows: 03.23% 0.92fr; 
+  gap: 0px 0px;
+      margin-top: 15px; 
+  grid-auto-flow: row;
+  grid-template-areas:
+    "tipoEstatus encabezadoEstatus"
+    "tipoEstatus tableConsulta";
+}
+
+.encabezadoEstatus {  display: block;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.12fr 0.88fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "alertMsj"
+    "filtrosConsulta";
+  grid-area: encabezadoEstatus;
+}
+
+.alertMsj { grid-area: alertMsj; }  
+
+.filtrosConsulta { grid-area: filtrosConsulta; }
+
+.tipoEstatus { grid-area: tipoEstatus; 
+    display: grid;
+    align-items: center;
+ }
+
+.alertMsj {
+  grid-area: alertMsj;
+  display: block;   
+}
+
+/* Agregar una clase de CSS para mostrar alertMsj cuando sea necesario */
+.mostrar-alertMsj .alertMsj {
+  display: block;        
+}
+
+.filtrosConsulta {
+  grid-area: filtrosConsulta;
+}   
+.tableConsulta { grid-area: tableConsulta;     margin-top: 15px; }
+
+
+
+    
+    /* HTML: <div class="loader"></div> */
+.loader {
+  width: 120px;
+  height: 20px;
+  -webkit-mask: radial-gradient(circle closest-side,#000 94%,#0000) left/20% 100%;
+  background: linear-gradient(#64b0f7  0 0) left/0% 100% no-repeat #ddd; 
+  animation: l17 2s infinite steps(6);
+}
+@keyframes l17 {
+    100% {background-size:120% 100%}
+}
+    
+    
+    
+    
+    

@@ -1,0 +1,75 @@
+.menu
+{
+    padding-left: 10px;
+	padding-right: 10px;
+	width: 100%;
+/* 	height:100% !important;   */ 
+	padding-top: 5px;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+/*   background: blue; */
+}  
+.dataTables_info
+{
+	display: none;
+}   
+.dataTables_filter
+{
+	display:none;
+}  
+
+@media (min-width: 1200px )               
+{
+	 .table-responsive:not(#divTableDetalleChofer)     
+	{
+		overflow-x: hidden !important;  		
+	}
+} 
+
+
+
+.cdo
+{
+	width:6% !important;
+/* 	font-size: 14px;  */
+}
+.factura
+{
+	width:18% !important;
+/* 	font-size: 14px;  */
+}
+.fecha
+{
+	width:18% !important;
+/* 	font-size: 14px;  */
+}
+.cve
+{
+	width:10% !important;
+/* 	font-size: 14px;  */
+}
+.estatus
+{
+	width:20% !important;    
+/* 	font-size: 14px;  */
+} 
+
+
+
+.mv
+{
+	display:block;  
+	
+}
+
+
+.ui-datepicker {
+  z-index: 9999 !important; /* Un valor ligeramente menor que el del modal */  
+}

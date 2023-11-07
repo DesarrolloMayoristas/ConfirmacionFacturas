@@ -1,0 +1,37 @@
+<!--  Header -->
+<div class="divPrincipal" style="text-align:center" id="enc">
+	<nav class="navbar navbar-default" style="background-color: #87b5e0;margin-bottom: 0px;padding-bottom: 0px;padding-top: 0px;" >
+	   <div class="container-fluid">
+			<table class="tbHeader" width=100% align="center">
+				<tr>
+					<td style="width:10%" align="center">
+						<img src="images/logocdo.png" class="img-responsive navbar-brand-img" width="65px" ></img>
+					</td>
+					<td style="width:25%"> 
+						<label  class="lbMenu" style="color: white"><span class="glyphicon glyphicon-user" ></span> ${infoUsu.nombre}</label>
+					</td>
+					<td  align="center" style="width:45%">
+						<div style="display: inline;">	
+						<label style="color:white; font-size: 20px"><b>CONFIRMACION DE FACTURAS</b></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						   	<label class="lbMenu" style="color: white"><span class="glyphicon glyphicon-globe" ></span> ${infoUsu.uname_nombre}</label>&nbsp;&nbsp;&nbsp;
+						   	<input type="hidden" value="${infoUsu.uname_br}">
+						   	<input type="hidden" value="${infoUsu.cve_usuario}" id="usr">
+						   	<input type="hidden" value="${infoUsu.cve_usuario}" id="usrCredito">
+						   	<input type="hidden" value="${infoUsu.nivel_usuario}" id="nivel">                                         
+						   	<input type="hidden" value="${infoUsu}" id="sessionInfo"> 
+						   	
+						    <label class="lbMenu" style="color: white"><span class="glyphicon glyphicon-home" ></span> ${infoUsu.departamento}</label>
+						</div>
+					</td>
+					<td><div align="right">
+						<form action="ServidorUsuario" method="post"> 
+							<input type="hidden" name="vista" value="Salir.jsp">
+							<button type="submit" class="btn btn-danger" style=""> Salir</button>
+						</form>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>     
+	</nav>
+</div> 
